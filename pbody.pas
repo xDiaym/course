@@ -9,29 +9,22 @@ type
     position, velocity, acceleration: Vec2f;
   end;
 
-procedure UpdateAcceleration(var this, other: Body);
+procedure UpdateAcceleration(var this, other: Body; dt: real);
 procedure Step(var this: Body; dt: real);
 
 implementation
 
-
-procedure UpdateAcceleration(var this, other: Body);
+procedure UpdateAcceleration(var this, other: Body; dt: real);
 begin
-  { F = G * m_2 / r^2 }
-  var r := Sub(other.position, this.position); 
-  var distSquared := SquareMagnitude(r);
-  r := Norm(r);
-  
-  var v := Mul(r, other.mass / distSquared);
-  this.acceleration := v;
+  var r := Sub(other.position, this.position);
+  var a := other.mass / Power(Magnitude(r), 3);
+  this.acceleration := Mul(r, a);  
 end;
 
 procedure Step(var this: Body; dt: real);
 begin
-  var v := Mul(this.velocity, dt);
-  this.position := Add(this.position, v);
-  v := Mul(this.acceleration, dt);
-  this.velocity := Add(this.velocity, v);
+  this.velocity := Add(this.velocity, Mul(this.acceleration, dt));
+  this.position := Add(this.position, Mul(this.velocity,     dt));
 end;
 
 end.
