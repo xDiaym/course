@@ -13,8 +13,6 @@ type
 const NBodies = 3;
 var bodies: array[1..NBodies] of Body;
 
-//procedure UpdateAcceleration(var this, other: Body; dt: real);
-//procedure Step(var this: Body; dt: real);
 procedure Step();
 
 implementation
@@ -22,7 +20,6 @@ implementation
 
 function Solve(p, v: Vec2f; i: integer): (Vec2f, Vec2f);
 begin
-//  var v := bodies[i].velocity;
   var a := Vec2fFrom(0);
   for var j := 1 to NBodies do
   begin
@@ -80,18 +77,5 @@ begin
     bodies[i].velocity := vs[i];
   end;
 end;
-
-//procedure UpdateAcceleration(var this, other: Body; dt: real);
-//begin
-//  var r := Sub(other.position, this.position);
-//  var a := other.mass / Power(Magnitude(r), 3);
-//  this.acceleration := Mul(r, a);  
-//end;
-
-//procedure Step(var this: Body; dt: real);
-//begin
-//  this.velocity := Add(this.velocity, Mul(this.acceleration, dt));
-//  this.position := Add(this.position, Mul(this.velocity,     dt));
-//end;
 
 end.

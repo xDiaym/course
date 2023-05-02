@@ -9,6 +9,14 @@ begin
   FillCircle(Round(b.position.x), Round(b.position.y), r);
 end;
 
+procedure DrawAll();
+begin
+  Window.Clear(RGB(250, 240, 228));
+  for var i := 1 to NBodies do
+    DrawBody(bodies[i]);
+  Redraw;
+end;
+
 begin
   Window.Title := 'Newton Mechanics';
   SetWindowSize(800, 600);
@@ -16,7 +24,7 @@ begin
   bodies[1].mass := 100;
   bodies[1].position.x := 400;
   bodies[1].position.y := 300;
-  bodies[1].velocity.x := 0;
+  bodies[1].velocity.x := 0.0;
   
   bodies[2].mass := 1;
   bodies[2].position.x := 400;
@@ -31,17 +39,7 @@ begin
   LockDrawing;
   while true do
   begin
-    Window.Clear(RGB(250, 240, 228));
-      DrawBody(bodies[1]);
-      DrawBody(bodies[2]);
-      DrawBody(bodies[3]);
-    Redraw;
-
-    Step;    
-//    UpdateAcceleration(bodies[1], bodies[2], 0.5);
-//    UpdateAcceleration(bodies[2], bodies[1], 0.5);
-//
-//    Step(bodies[1], 0.5);
-//    Step(bodies[2], 0.5);
+    DrawAll;
+    Step;
   end;
 end.
