@@ -5,7 +5,7 @@ uses PBody;
 procedure DrawBody(var b: Body);
 begin
   var r := Round(5 * Ln(b.mass)) + 5;
-  SetBrushColor(RGB(50, 50, 66));
+  SetBrushColor(b.col);
   FillCircle(Round(b.position.x), Round(b.position.y), r);
 end;
 
@@ -25,16 +25,19 @@ begin
   bodies[1].position.x := 400;
   bodies[1].position.y := 300;
   bodies[1].velocity.x := 0.0;
+  bodies[1].col := RGB(234, 235, 66);
   
   bodies[2].mass := 1;
   bodies[2].position.x := 400;
   bodies[2].position.y := 300 - 100;
   bodies[2].velocity.x := 1.2;
+  bodies[2].col := RGB(200, 50, 66);
   
   bodies[3].mass := 1;
   bodies[3].position.x := 400;
   bodies[3].position.y := 300 + 100;
   bodies[3].velocity.x := -1.2;
+  bodies[3].col := RGB(50, 200, 66);
   
   LockDrawing;
   while true do

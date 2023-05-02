@@ -8,6 +8,7 @@ type
   Body = record
     mass: real;
     position, velocity, acceleration: Vec2f;
+    col: Color
   end;
 
 const NBodies = 3;
