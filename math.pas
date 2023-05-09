@@ -63,5 +63,4 @@ begin
   result.x := v.x + u.x * f;
   result.y := v.y + u.y * f;
 end;
-
 end.

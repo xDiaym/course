@@ -16,6 +16,9 @@ var bodies: array[1..NBodies] of Body;
 
 procedure Step();
 
+function MassCenter(): Vec2f;
+function Energy(): real;
+
 implementation
 
 
@@ -77,6 +80,26 @@ begin
     bodies[i].position := ps[i];
     bodies[i].velocity := vs[i];
   end;
+end;
+
+function MassCenter(): Vec2f;
+begin
+  var m: real;
+  var R := Vec2fFrom(0);
+  for var i := 1 to NBodies do
+  begin
+    m += bodies[i].mass;
+    R := Add(R, Mul(bodies[i].position, bodies[i].mass));  
+  end;
+  MassCenter := Mul(R, 1 / m);
+end;
+
+function Energy(): real;
+begin
+  var E := 0.0;
+  for var i := 1 to NBodies do
+    E += bodies[i].mass * Magnitude(bodies[i].velocity) / 2;
+  Energy := E;
 end;
 
 end.
