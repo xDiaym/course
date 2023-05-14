@@ -11,7 +11,9 @@ type
     col: Color
   end;
 
-const NBodies = 3;
+const
+  NBodies = 3;
+  dt = 0.5;
 var bodies: array[1..NBodies] of Body;
 
 procedure Step();
@@ -70,7 +72,7 @@ begin
   
   for var i := 1 to NBodies do
   begin
-    var (p, v) := RK4(i, 0.5);
+    var (p, v) := RK4(i, dt);
     ps[i] := p;
     vs[i] := v;
   end;
