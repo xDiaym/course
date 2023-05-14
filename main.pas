@@ -24,7 +24,7 @@ procedure DrawEnergy();
 begin
   // Format() don't work
   var fmt: string := FloatToStr(Energy);
-  var text := 'Energy: ' + fmt.Substring(0, Min(4, fmt.Length)) + 'J';
+  var text := 'Energy: ' + fmt.Substring(0, Min(4, fmt.Length));
   SetBrushColor(BackgroundColor);
   TextOut(8, 8, text);
 end;
